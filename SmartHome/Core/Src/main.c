@@ -21,7 +21,7 @@
 #include "main.h"
 #include "usart.h"
 #include "gpio.h"
-
+#include <input_test.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "driver_usart.h"
@@ -70,8 +70,6 @@ ring_buffer test_buffer;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
-    char c = 0;
     
   /* USER CODE END 1 */
 
@@ -102,7 +100,6 @@ int main(void)
   
   // 使能USART1的中断
     EnableDebugIRQ();
-    printf("Hello World!\r\n");
 
   /* USER CODE END 2 */
 
@@ -111,12 +108,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    c = getchar();
-    if(c != 0)
-    {
-        printf("%c", c);
-        c = 0;
-    }
+    input_test();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
