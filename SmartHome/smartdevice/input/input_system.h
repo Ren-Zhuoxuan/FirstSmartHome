@@ -1,6 +1,11 @@
 #ifndef __INPUT_SYSTEM_H
 #define __INPUT_SYSTEM_H
 
+#ifndef NULL
+#define NULL (void *)0
+#endif
+
+
 #define TIME_T int
 #define INTPU_BUF_LEN 1024
 
@@ -31,9 +36,11 @@ typedef struct InputDevice
     int (*GetInputEvent)(PInputEvent ptInputEvent);
     int (*DeviceInit)(void);
     int (*DeviceExit)(void);
-    struct InputDevice *next;
+    struct InputDevice *pNext;
 }InputDevice,*PInputDevice;
 
-
+void AddInputDevices(void);
+void InitInputDevices(void);
+void InputDeviceRegister(PInputDevice ptInputDevice);
 
 #endif  /*__INPUT_SYSTEM_H*/ //避免重复包含头文件

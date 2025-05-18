@@ -1,0 +1,9 @@
+#ifndef __KAL_GPIO_KEY_H
+#define __KAL_GPIO_KEY_H
+
+
+void KAL_GPIOKeyInit();
+
+
+
+#endif /*__KAL_GPIO_KEY_H*/
