@@ -2,7 +2,7 @@
 #define __KAL_GPIO_KEY_H
 
 
-void KAL_GPIOKeyInit();
+void KAL_GPIOKeyInit(void);
 
 
 

@@ -7,7 +7,7 @@
 
 
 #define TIME_T int
-#define INTPU_BUF_LEN 1024
+#define INTPU_BUF_LEN 20
 
 typedef enum{
     INPUT_EVENT_TYPE_KEY,
