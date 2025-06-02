@@ -1,4 +1,5 @@
 #include <led_device.h>
+#include <cal_led_device.h>
 #include "kal_led_device.h"
 
 int KAL_LEDDeviceInit(struct LEDDevice *ptLEDDevice)

@@ -1,5 +1,5 @@
 #include "led_device.h"
-#include "stdio.h"
+#include <kal_led_device.h>
 
 static int LEDDeviceInit(struct LEDDevice *ptLEDDevice)
 {
@@ -10,7 +10,6 @@ static int LEDDeviceInit(struct LEDDevice *ptLEDDevice)
 static int LEDDeviceControl(struct LEDDevice *ptLEDDevice,int iState)
 {
     return KAL_LEDDeviceControl(ptLEDDevice,iState);
-    return 0;
 }
 
 static LEDDevice g_tLEDDevices[] = {

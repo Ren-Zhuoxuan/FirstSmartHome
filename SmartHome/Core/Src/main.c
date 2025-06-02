@@ -22,6 +22,8 @@
 #include "usart.h"
 #include "gpio.h"
 #include <input_test.h>
+#include <led_test.h>
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "driver_usart.h"
@@ -108,7 +110,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    input_test();
+    //input_test();
+    led_test();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

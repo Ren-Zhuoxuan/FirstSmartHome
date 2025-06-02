@@ -4,6 +4,7 @@
 #include <cal_timer.h>
 
 TIME_T KAL_GetTime(void);
+void KAL_Delay(unsigned int DelayMS);
 
 
 
