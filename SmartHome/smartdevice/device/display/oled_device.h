@@ -3,8 +3,10 @@
 
 #include "display_device.h"
 
-static int OLEDDeviceInit(struct DispayDevice *ptDev);
-static void OLEDDeviceFlush(struct DispayDevice *ptDev);
+static int OLEDDeviceInit(struct DisplayDevice *ptDev);
+static void OLEDDeviceFlush(struct DisplayDevice *ptDev);
+static int OLEDSetPixel(struct DisplayDevice *ptDev,int iX,int iY,unsigned int dwColor);
+void AddDisplayDeviceOLED(void);
 
 
 #endif /*__OLED_DEVICE_H*/

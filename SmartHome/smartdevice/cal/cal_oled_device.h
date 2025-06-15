@@ -2,7 +2,7 @@
 #define __CAL_OLED_DEVICE_H
 #include "display_device.h"
 
-static int CAL_OLEDDeviceInit(struct DispayDevice *ptDev);
-static void CAL_OLEDDeviceFlush(struct DispayDevice *ptDev);
+int CAL_OLEDDeviceInit(struct DisplayDevice *ptDev);
+void CAL_OLEDDeviceFlush(struct DisplayDevice *ptDev);
 
 #endif /*__CAL_OLED_DEVICE_H*/

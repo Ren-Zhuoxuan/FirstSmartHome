@@ -1,7 +1,8 @@
 #include <kal_oled_device.h>
 #include <config.h>
+#include <cal_oled_device.h>
 
-static int KAL_OLEDDeviceInit(struct DispayDevice *ptDev)
+int KAL_OLEDDeviceInit(struct DisplayDevice *ptDev)
 {
 #if defined (CONFIG_NOOS)
     return CAL_OLEDDeviceInit(ptDev);
@@ -12,7 +13,7 @@ static int KAL_OLEDDeviceInit(struct DispayDevice *ptDev)
 #endif
 }
 
-static void KAL_OLEDDeviceFlush(struct DispayDevice *ptDev)
+void KAL_OLEDDeviceFlush(struct DisplayDevice *ptDev)
 {
 #if defined (CONFIG_NOOS)
     CAL_OLEDDeviceFlush(ptDev);

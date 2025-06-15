@@ -6,22 +6,22 @@
     #include <driver_oled.h>
 #endif
 
-static int CAL_OLEDDeviceInit(struct DispayDevice *ptDev)
+int CAL_OLEDDeviceInit(struct DisplayDevice *ptDev)
 {
 #if defined (CONFIG_SUPPORT_HAL)
     I2C_GPIO_ReInit();
     OLED_Init();
     return 0;
-#elif
+#elif defined (CONFIG_SUPPORT_NOHAL)
     return NOHAL_OLEDDeviceInit(ptDev);
 #endif
 }
 
-static void CAL_OLEDDeviceFlush(struct DispayDevice *ptDev)
+void CAL_OLEDDeviceFlush(struct DisplayDevice *ptDev)
 {
 #if defined (CONFIG_SUPPORT_HAL)
     OLED_Copy(ptDev->FBBase);
-#elif
+#elif defined (CONFIG_SUPPORT_NOHAL)
     NOHAL_OLEDDeviceFlush(ptDev);
 #endif
 }

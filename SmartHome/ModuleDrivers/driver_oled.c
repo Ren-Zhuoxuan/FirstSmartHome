@@ -12,8 +12,8 @@
 
 #include "driver_oled.h"
 #include "driver_i2c.h"
-#include "ascii_font.h"
 
+extern const uint8_t ascii_font[128][16];
 /*
  *  函数名：OLED_WriteCmd
  *  功能描述：I2C发送命令给OLED：开始信号->设备地址->控制字节->命令数据->停止信号
@@ -355,7 +355,7 @@ void OLED_Init(void)
     OLED_SetDispStartLine(0x00);            // 3. 设置起始行
     OLED_SEG_REMAP();                       // 4. 行翻转
     OLED_SCAN_REMAP();                      // 5. 正常扫描
-    OLED_SetComConfig(0x00, 0x00);          // 6. COM 引脚设置
+    OLED_SetComConfig(COM_PIN_SEQ, COM_NOREMAP);          // 6. COM 引脚设置
     OLED_SetContrastValue(0x7F);            // 7. 设置对比度
     ENTIRE_DISP_OFF();                      // 8. 全屏点亮/熄灭
     DISP_NORMAL();                          // 9. 显示模式

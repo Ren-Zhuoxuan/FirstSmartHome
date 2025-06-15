@@ -1,22 +1,22 @@
 #include <oled_device.h>
-
+#include <kal_oled_device.h>
 /* 128*64bit 1024bytes*/
 static unsigned char g_OLEDFramebuffer[1024];
 
 
-static int OLEDDeviceInit(struct DispayDevice *ptDev)
+static int OLEDDeviceInit(struct DisplayDevice *ptDev)
 {
     //初始化OLED硬件
     return KAL_OLEDDeviceInit(ptDev);
 }
 
-static void OLEDDeviceFlush(struct DispayDevice *ptDev)
+static void OLEDDeviceFlush(struct DisplayDevice *ptDev)
 {
     /*把Framebuffer的数据搬到OLED自带的显存中*/
     KAL_OLEDDeviceFlush(ptDev);
 }
 
-static int OLEDSetPixel(struct DispayDevice *ptDev,int iX,int iY,unsigned int dwColor)
+static int OLEDSetPixel(struct DisplayDevice *ptDev,int iX,int iY,unsigned int dwColor)
 {
     unsigned char *buf = ptDev->FBBase;
     int page;
@@ -45,13 +45,19 @@ static int OLEDSetPixel(struct DispayDevice *ptDev,int iX,int iY,unsigned int dw
 }
 
 
-static DispayDevice g_tOLEDDevice = {
+static DisplayDevice g_tOLEDDevice = {
     "OLED",
     g_OLEDFramebuffer,
     128,
     64,
     1,
+    128*64*1/8,
     OLEDDeviceInit,
     OLEDDeviceFlush,
     OLEDSetPixel
 };
+
+void AddDisplayDeviceOLED(void)
+{
+    DisplayDeviceRegister(&g_tOLEDDevice);
+}

@@ -321,6 +321,9 @@ extern void OLED_SetPosition(uint8_t page, uint8_t col);
 */
 extern void OLED_Clear(void);
 
+extern void OLED_Copy(uint8_t *buf);
+
+
 /*
  *  函数名：OLED_PutChar
  *  功能描述：显示一个字符

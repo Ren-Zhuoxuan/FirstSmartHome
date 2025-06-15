@@ -3,8 +3,8 @@
 
 #include "display_device.h"
 
-static int KAL_OLEDDeviceInit(struct DispayDevice *ptDev);
-static void KAL_OLEDDeviceFlush(struct DispayDevice *ptDev);
+int KAL_OLEDDeviceInit(struct DisplayDevice *ptDev);
+void KAL_OLEDDeviceFlush(struct DisplayDevice *ptDev);
 
 
 #endif /*__KAL_OLED_DEVICE_H*/
