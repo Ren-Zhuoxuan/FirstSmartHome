@@ -23,6 +23,8 @@
 #include "gpio.h"
 #include <input_test.h>
 #include <led_test.h>
+#include <display_test.h>
+#include <fan_test.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -107,11 +109,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  display_test();
+  fan_test();
   while (1)
   {
     /* USER CODE END WHILE */
     //input_test();
-    led_test();
+    //led_test();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
