@@ -19,17 +19,17 @@ typedef struct FontBitMap {
 typedef struct FontLib {
 	char *name;
 	int (*FontInit)(struct FontOpr *pFontLib);  /* 初始化字库 */
-	int (*GetFontSize)(void);                   /* 获取字体大小 */
+	void (*GetFontSize)(int *pWidth,int *pHeight);                   /* 获取字体大小 */
 	int (*SetFontSize)(int iFontSize);          /* 设置字体大小 */
 	int (*GetFontBitMap)(unsigned int dwCode, PFontBitMap ptFontBitMap);  /* 获取某个字符的字库 dwCode传入字符，ptFontBitMap获得点阵*/
-	struct FontLib *ptNext;
+	struct FontLib *pNext;
 }FontLib, *PFontLib;
 
 //注册的时候会把这些lib放入链表，还可以从链表中取出字库
 
 void FontLibRegister(PFontLib ptFontLib);
 
-PFontLib GetFontLib(char *name);
+PFontLib __GetFontLib(char *name);
 
 
 #endif

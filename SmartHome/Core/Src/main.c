@@ -110,7 +110,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   display_test();
-  fan_test();
+  //fan_test();
   while (1)
   {
     /* USER CODE END WHILE */
