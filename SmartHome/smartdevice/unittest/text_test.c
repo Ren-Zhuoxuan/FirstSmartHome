@@ -1,27 +1,39 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <display_system.h>
+#include <font_system.h>
+#include <show_text.h>
 
 
 /**********************************************************************
- * 函数名称： display_test
- * 功能描述： 显示设备单元测试函数
+ * 函数名称： text_test
+ * 功能描述： 文本系统单元测试函数
  * 输入参数： 无
  * 输出参数： 无
  * 返 回 值： 无
  * 修改日期       版本号     修改人	      修改内容
  * -----------------------------------------------
- * 2021/10/08	     V1.0	  韦东山	      创建
+ * 2021/10/13	     V1.0	  韦东山	      创建
  ***********************************************************************/
-void display_test(void)
+void text_test(void)
 {
+	char *str = "www.100ask.net";
 	PDisplayDevice ptDevice;
 	char *name = "OLED";
-	int x, y;
-	
+
+	/* 添加字库 */
+	AddFontLibs();
+
+	/* 选择默认字库 */
+	SetDefaultFontLib("ascii");
+
+	/* 初始化默认字库 */
+	InitDefaultFontLib();
+
+	/* 添加显示设备 */
 	AddDisplayDevices();
 
+	/* 获得指定的显示设备 */
 	ptDevice = GetDisplayDevice(name);
 
 	if (!ptDevice)
@@ -30,23 +42,15 @@ void display_test(void)
 		return;
 	}
 
-	/* 1. 初始化设备 */
+	/* 初始化设备 */
 	ptDevice->Init(ptDevice);
 
-	/* 2. 清除屏幕 */
+	/* 清除屏幕 */
 	memset(ptDevice->FBBase, 0, ptDevice->iSize);
 
-	/* 3. 画线 */
-	y = ptDevice->iYres / 2;
-	for (x = 0; x < ptDevice->iXres; x++)
-		ptDevice->SetPixel(ptDevice, x, y, 1);
-
-	x = ptDevice->iXres / 2;
-	for (y = 0; y < ptDevice->iYres; y++)
-		ptDevice->SetPixel(ptDevice, x, y, 1);
-
-
-	/* 4. Flush */
-	ptDevice->Flush(ptDevice);
+	/* 在屏幕上显示文字 */
+	ShowTextInDisplayDevice(ptDevice, 16, 16, str);
 }
+
+
 

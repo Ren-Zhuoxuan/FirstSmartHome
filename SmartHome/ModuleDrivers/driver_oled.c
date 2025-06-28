@@ -14,6 +14,7 @@
 #include "driver_i2c.h"
 
 extern const uint8_t ascii_font[128][16];
+
 /*
  *  函数名：OLED_WriteCmd
  *  功能描述：I2C发送命令给OLED：开始信号->设备地址->控制字节->命令数据->停止信号
@@ -328,7 +329,7 @@ void OLED_SetVcomhLevel(VCOMH_LEVEL level)
 {
     if((level != LEVEL_0) && (level != LEVEL_1) && (level != LEVEL_2))      return;
     OLED_WriteCmd(0xDB);
-    OLED_WriteCmd(level);
+    OLED_WriteCmd(level << 4);
 }
 
 /************** 6. 电荷碰撞功能函数 **************/
@@ -401,6 +402,14 @@ void OLED_Clear(void)
     }
 }
 
+/*
+ *  函数名：OLED_Copy
+ *  功能描述：把缓冲区的数据写到LCD的显存去
+ *  输入参数：buf-缓冲区,
+ *  输出参数：无
+ *  返回值：无
+ *  注意: 如果buf就是LCD实际使用的显存, 则此函数可以写为空函数
+ */
 void OLED_Copy(uint8_t *buf)
 {
     uint8_t i = 0;
@@ -411,6 +420,7 @@ void OLED_Copy(uint8_t *buf)
         OLED_WriteNBytes(&buf[i*128], 128);
     }
 }
+
 
 /*
  *  函数名：OLED_PutChar

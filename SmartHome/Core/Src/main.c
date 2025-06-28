@@ -24,7 +24,7 @@
 #include <input_test.h>
 #include <led_test.h>
 #include <display_test.h>
-#include <fan_test.h>
+#include <text_test.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -99,23 +99,24 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
   
-  // 初始化缓冲区
   ring_buffer_init(&test_buffer);
   
-  // 使能USART1的中断
     EnableDebugIRQ();
+    printf("Hello World!\r\n");
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  display_test();
-  //fan_test();
+  //display_test();
+  text_test();
   while (1)
   {
     /* USER CODE END WHILE */
-    //input_test();
-    //led_test();
+   	//input_test();
+   	//led_test();
+   	//display_test();
+	
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

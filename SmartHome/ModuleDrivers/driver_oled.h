@@ -80,8 +80,8 @@ extern void OLED_SetContrastValue(uint8_t value);
 /* 2. 滚动命令功能函数 */
 typedef enum
 {
-    H_RIGHT     = 0x26,
-    H_LEFT      = 0x27,
+    H_RIGHT     = 0,
+    H_LEFT      = 1,
 }H_SCROLL_DIR;  // 水平滚动方向
 
 /*
@@ -98,8 +98,8 @@ extern void OLED_H_Scroll(H_SCROLL_DIR dir, uint8_t start, uint8_t fr_time, uint
 
 typedef enum
 {
-    HV_RIGHT    = 0x29,
-    HV_LEFT     = 0x2A,
+    HV_RIGHT    = 0,
+    HV_LEFT     = 1,
 }HV_SCROLL_DIR;     // 水平和垂直滚动的方向
 
 /*
@@ -321,7 +321,16 @@ extern void OLED_SetPosition(uint8_t page, uint8_t col);
 */
 extern void OLED_Clear(void);
 
-extern void OLED_Copy(uint8_t *buf);
+
+/*
+ *  函数名：OLED_Copy
+ *  功能描述：把缓冲区的数据写到LCD的显存去
+ *  输入参数：buf-缓冲区,
+ *  输出参数：无
+ *  返回值：无
+ *  注意: 如果buf就是LCD实际使用的显存, 则此函数可以写为空函数
+ */
+void OLED_Copy(uint8_t *buf);
 
 
 /*

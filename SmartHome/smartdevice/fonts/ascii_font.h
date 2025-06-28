@@ -1,12 +1,17 @@
-#ifndef ASCII_FONT_H
-#define ASCII_FONT_H
-#include <font_manager.h>
-#include <stdio.h>
-#include <string.h>
-static void ASCIIGetFontSize(int *pWidth,int *pHeight);
+#ifndef __ASCII_FONT_H
+#define __ASCII_FONT_H
 
-static int ASCIIGetFontBitMap(unsigned int dwCode, PFontBitMap ptFontBitMap);
-
+/**********************************************************************
+ * 函数名称： AddFontLibASCII
+ * 功能描述： 注册ASCII字库
+ * 输入参数： 无
+ * 输出参数： 无
+ * 返 回 值： 无
+ * 修改日期        版本号     修改人	      修改内容
+ * -----------------------------------------------
+ * 2021/10/08	     V1.0	  韦东山	      创建
+ ***********************************************************************/
 void AddFontLibASCII(void);
 
-#endif
+#endif /* __ASCII_FONT_H */
+

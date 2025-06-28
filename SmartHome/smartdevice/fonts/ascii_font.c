@@ -1,7 +1,7 @@
-#include <ascii_font.h>
+#include <string.h>
+#include "font_manager.h"
 
-
-unsigned char ascii_font[128][16] = {
+const unsigned char ascii_font[128][16] = {
 {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},/*" ",0*/
 
 {0x00,0xFE,0x02,0x02,0x02,0x02,0x02,0x02,0x00,0x3F,0x20,0x20,0x20,0x20,0x20,0x20},/*"",1*/
@@ -259,59 +259,93 @@ unsigned char ascii_font[128][16] = {
 {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}/*"",127*/
 };
 
-static void ASCIIGetFontSize(int *pWidth,int *pHeight)
+/**********************************************************************
+ * 函数名称： ASCIIGetFontSize
+ * 功能描述： 获得ASCII字库中字符点阵的宽、高
+ * 输入参数： 无
+ * 输出参数： piWidth-保存宽度
+ * 输出参数： piHeigh-保存高度
+ * 返 回 值： 无
+ * 修改日期        版本号     修改人	      修改内容
+ * -----------------------------------------------
+ * 2021/10/08	     V1.0	  韦东山	      创建
+ ***********************************************************************/
+static void ASCIIGetFontSize(int *piWidth, int *piHeigh)					/* 获取字体大小 */
 {
-    if (pWidth)
-    {
-        *pWidth = 8;
-    }
-    if (pHeight)
-    {
-        *pHeight = 16;
-    }
+	if (piWidth)
+		*piWidth = 8;
+	if (piHeigh)
+		*piHeigh = 16;
 }
 
-static int ASCIIGetFontBitMap(unsigned int dwCode, PFontBitMap ptFontBitMap)
+/**********************************************************************
+ * 函数名称： ASCIIGetFontBitMap
+ * 功能描述： 获得ASCII字库中某个字符的点阵
+ * 输入参数： dwCode-哪个字符,字符的ASCII码
+ * 输出参数： ptFontBitMap-用来保存字库点阵
+ * 返 回 值： 0-成功, -1-失败
+ * 修改日期        版本号     修改人	      修改内容
+ * -----------------------------------------------
+ * 2021/10/08	     V1.0	  韦东山	      创建
+ ***********************************************************************/
+static int ASCIIGetFontBitMap(unsigned int dwCode, PFontBitMap ptFontBitMap)  /* 获取某个字符的字库 */
 {
-    int iWidth  = 8;
-    int iHeight = 16;
+	int iWidth = 8;
+	int iHeigh = 16;
+	const unsigned char *dots = ascii_font[dwCode];
+	if (ptFontBitMap)
+	{
+		/* 调用GetFontBitMap之前要设置原点X,Y坐标
+		 * 根据它可以算出左上角X,Y坐标
+		 * 根据它可以算出下一个字符的原点X,Y坐标
+		 */
 
-    unsigned char *dots = ascii_font[dwCode];
-    if (!ptFontBitMap)
-    {
-        ptFontBitMap->iLeftUpX = ptFontBitMap->iCurOriginX;
-        ptFontBitMap->iLeftUpY = ptFontBitMap->iCurOriginY - iHeight + 1;
+		/* 计算左上角坐标 */
+		ptFontBitMap->iLeftUpX = ptFontBitMap->iCurOriginX;
+		ptFontBitMap->iLeftUpY = ptFontBitMap->iCurOriginY - iHeigh + 1;
 
-        ptFontBitMap->iNextOriginX = ptFontBitMap->iCurOriginX + iWidth;
-        ptFontBitMap->iNextOriginY = ptFontBitMap->iCurOriginY;
+		/* 计算下一个字符的原点坐标 */
+		ptFontBitMap->iNextOriginX = ptFontBitMap->iCurOriginX + iWidth;
+		ptFontBitMap->iNextOriginY = ptFontBitMap->iCurOriginY;
 
-        ptFontBitMap->iRows = iWidth;
-        ptFontBitMap->iWidth = iHeight;
-    
-        if (!ptFontBitMap->pucBuffer)
-        {
-            ptFontBitMap->pucBuffer = dots;
-        }
-        else
-        {
-            memcpy(ptFontBitMap->pucBuffer,dots,16);
-        }
-        return 0;
-    }
-    return -1;
+		/* 设置点阵宽度/高度 */
+		ptFontBitMap->iWidth = iWidth;
+		ptFontBitMap->iRows  = iHeigh;
+
+		/* 如果用户没有提供自己的buffer, 直接返回字库数组里的数据 */
+		if (!ptFontBitMap->pucBuffer)
+			ptFontBitMap->pucBuffer = (unsigned char *)dots;
+		else /* 如果用户提供了自己的buffer, 复制字库数组里的数据 */
+			memcpy(ptFontBitMap->pucBuffer, dots, 16);
+
+		return 0;
+	}
+	return -1;
 }
 
 
+/* 构造一个FontLib */
 static FontLib g_ASCIIFontLib = {
-    "ascii",
-    NULL,
-    ASCIIGetFontSize,
-    NULL,
-    ASCIIGetFontBitMap
+	"ascii",
+	NULL,
+	ASCIIGetFontSize,
+	NULL,
+	ASCIIGetFontBitMap,
 };
 
 
+/**********************************************************************
+ * 函数名称： AddFontLibASCII
+ * 功能描述： 注册ASCII字库
+ * 输入参数： 无
+ * 输出参数： 无
+ * 返 回 值： 无
+ * 修改日期        版本号     修改人	      修改内容
+ * -----------------------------------------------
+ * 2021/10/08	     V1.0	  韦东山	      创建
+ ***********************************************************************/
 void AddFontLibASCII(void)
 {
-    FontLibRegister(&g_ASCIIFontLib);
+	FontLibRegister(&g_ASCIIFontLib);
 }
+

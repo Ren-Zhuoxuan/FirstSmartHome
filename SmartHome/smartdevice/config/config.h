@@ -1,3 +1,4 @@
+
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
@@ -5,4 +6,6 @@
 
 #define CONFIG_SUPPORT_HAL 1
 
-#endif
+
+#endif /* __CONFIG_H */
+

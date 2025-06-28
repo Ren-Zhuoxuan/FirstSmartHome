@@ -10,7 +10,7 @@
       <TargetName>F103_Moduel</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\ModuleDrivers;..\smartdevice\cal;..\smartdevice\kal;..\smartdevice\input;..\smartdevice\unittest;..\smartdevice\device;..\smartdevice\device\display;..\smartdevice\config;..\smartdevice\fonts</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\ModuleDrivers;../smartdevice/cal;../smartdevice/kal;../smartdevice/input;../smartdevice/unittest;../smartdevice/device;../smartdevice/device/display;../smartdevice/config;../smartdevice/fonts;../smartdevice/text</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -538,11 +538,6 @@
               <FileType>1</FileType>
               <FilePath>..\ModuleDrivers\driver_oled.c</FilePath>
             </File>
-            <File>
-              <FileName>driver_fan.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\ModuleDrivers\driver_fan.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -554,9 +549,9 @@
               <FilePath>..\smartdevice\kal\kal_gpio_key.c</FilePath>
             </File>
             <File>
-              <FileName>kal_timer.c</FileName>
+              <FileName>kal_time.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\smartdevice\kal\kal_timer.c</FilePath>
+              <FilePath>..\smartdevice\kal\kal_time.c</FilePath>
             </File>
             <File>
               <FileName>kal_led_device.c</FileName>
@@ -567,11 +562,6 @@
               <FileName>kal_oled_device.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\smartdevice\kal\kal_oled_device.c</FilePath>
-            </File>
-            <File>
-              <FileName>kal_fan_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\smartdevice\kal\kal_fan_device.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -584,9 +574,9 @@
               <FilePath>..\smartdevice\cal\cal_gpio_key.c</FilePath>
             </File>
             <File>
-              <FileName>cal_timer.c</FileName>
+              <FileName>cal_time.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\smartdevice\cal\cal_timer.c</FilePath>
+              <FilePath>..\smartdevice\cal\cal_time.c</FilePath>
             </File>
             <File>
               <FileName>cal_led_device.c</FileName>
@@ -597,11 +587,6 @@
               <FileName>cal_oled_device.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\smartdevice\cal\cal_oled_device.c</FilePath>
-            </File>
-            <File>
-              <FileName>cal_fan_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\smartdevice\cal\cal_fan_device.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -644,9 +629,9 @@
               <FilePath>..\smartdevice\unittest\display_test.c</FilePath>
             </File>
             <File>
-              <FileName>fan_test.c</FileName>
+              <FileName>text_test.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\smartdevice\unittest\fan_test.c</FilePath>
+              <FilePath>..\smartdevice\unittest\text_test.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -657,11 +642,6 @@
               <FileName>led_device.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\smartdevice\device\led_device.c</FilePath>
-            </File>
-            <File>
-              <FileName>fan_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\smartdevice\device\fan_device.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -674,23 +654,25 @@
               <FilePath>..\smartdevice\device\display\display_device.c</FilePath>
             </File>
             <File>
-              <FileName>oled_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\smartdevice\device\display\oled_device.c</FilePath>
-            </File>
-            <File>
               <FileName>display_system.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\smartdevice\device\display\display_system.c</FilePath>
             </File>
+            <File>
+              <FileName>oled_device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\device\display\oled_device.c</FilePath>
+            </File>
           </Files>
-        </Group>
-        <Group>
-          <GroupName>config</GroupName>
         </Group>
         <Group>
           <GroupName>fonts</GroupName>
           <Files>
+            <File>
+              <FileName>ascii_font.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\fonts\ascii_font.c</FilePath>
+            </File>
             <File>
               <FileName>font_manager.c</FileName>
               <FileType>1</FileType>
@@ -701,10 +683,20 @@
               <FileType>1</FileType>
               <FilePath>..\smartdevice\fonts\font_system.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>text</GroupName>
+          <Files>
             <File>
-              <FileName>ascii_font.c</FileName>
+              <FileName>show_text.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\smartdevice\fonts\ascii_font.c</FilePath>
+              <FilePath>..\smartdevice\text\show_text.c</FilePath>
+            </File>
+            <File>
+              <FileName>encoding.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\text\encoding\encoding.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -727,14 +719,5 @@
     </components>
     <files/>
   </RTE>
-
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>F103_Moduel</LayName>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
 
 </Project>
