@@ -17,7 +17,7 @@
  ***********************************************************************/
 void text_test(void)
 {
-	char *str = "www.100ask.net";
+	char *str = "rzxzxr";
 	PDisplayDevice ptDevice;
 	char *name = "OLED";
 
