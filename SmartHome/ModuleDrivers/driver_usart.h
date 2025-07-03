@@ -3,7 +3,10 @@
 
 #include "stm32f1xx_hal.h"
 
-extern void EnableDebugIRQ(void);
-extern void DisableDebugIRQ(void);
+void EnableDebugIRQ(void);
+void DisableDebugIRQ(void);
+
+void EnableUART3IRQ(void);
+
 
 #endif /* __DRIVER_USART_H */

@@ -25,6 +25,8 @@
 #include <led_test.h>
 #include <display_test.h>
 #include <text_test.h>
+#include <net_test.h>
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -102,6 +104,7 @@ int main(void)
   ring_buffer_init(&test_buffer);
   
     EnableDebugIRQ();
+	  EnableUART3IRQ();
     printf("Hello World!\r\n");
 
   /* USER CODE END 2 */
@@ -109,7 +112,8 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //display_test();
-  text_test();
+  //text_test();
+  net_test();
   while (1)
   {
     /* USER CODE END WHILE */

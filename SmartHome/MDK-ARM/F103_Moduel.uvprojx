@@ -10,7 +10,7 @@
       <TargetName>F103_Moduel</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\ModuleDrivers;../smartdevice/cal;../smartdevice/kal;../smartdevice/input;../smartdevice/unittest;../smartdevice/device;../smartdevice/device/display;../smartdevice/config;../smartdevice/fonts;../smartdevice/text;..\smartdevice\net</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\ModuleDrivers;../smartdevice/cal;../smartdevice/kal;../smartdevice/input;../smartdevice/unittest;../smartdevice/device;../smartdevice/device/display;../smartdevice/config;../smartdevice/fonts;../smartdevice/text;../smartdevice/net;../smartdevice/device/uart</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -563,6 +563,11 @@
               <FileType>1</FileType>
               <FilePath>..\smartdevice\kal\kal_oled_device.c</FilePath>
             </File>
+            <File>
+              <FileName>kal_uart_dev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\kal\kal_uart_dev.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -587,6 +592,11 @@
               <FileName>cal_oled_device.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\smartdevice\cal\cal_oled_device.c</FilePath>
+            </File>
+            <File>
+              <FileName>cal_uart_dev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\cal\cal_uart_dev.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -633,6 +643,11 @@
               <FileType>1</FileType>
               <FilePath>..\smartdevice\unittest\text_test.c</FilePath>
             </File>
+            <File>
+              <FileName>net_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\unittest\net_test.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -642,6 +657,11 @@
               <FileName>led_device.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\smartdevice\device\led_device.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_dev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\device\uart\uart_dev.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -704,9 +724,24 @@
           <GroupName>net</GroupName>
           <Files>
             <File>
+              <FileName>esp8266.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\net\esp8266.c</FilePath>
+            </File>
+            <File>
               <FileName>net_device.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\smartdevice\net\net_device.c</FilePath>
+            </File>
+            <File>
+              <FileName>net_system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\net\net_system.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_command.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\smartdevice\net\at_command\at_command.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -729,14 +764,5 @@
     </components>
     <files/>
   </RTE>
-
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>F103_Moduel</LayName>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
 
 </Project>

@@ -17,6 +17,16 @@ void EnableDebugIRQ(void)
     __HAL_UART_ENABLE_IT(&huart1, UART_IT_TC | UART_IT_RXNE); 
 }
 
+void EnableUART3IRQ(void)
+{
+    HAL_NVIC_SetPriority(USART3_IRQn, 0, 1);
+    HAL_NVIC_EnableIRQ(USART3_IRQn);
+    //使能接收中断即可
+    __HAL_UART_ENABLE_IT(&huart3, UART_IT_RXNE); 
+}
+
+
+
 void DisableDebugIRQ(void)
 {
     __HAL_UART_DISABLE_IT(&huart1, UART_IT_TC | UART_IT_RXNE);  
@@ -50,6 +60,56 @@ void USART1_IRQHandler(void)
     HAL_UART_IRQHandler(&huart1);
 }
 
+/**********************************************************************
+ * 函数名称： USART3_IRQHandler
+ * 功能描述： UART3中断函数,把接收到的数据放入环形缓冲区
+ * 输入参数： 无
+ * 输出参数： 无
+ * 返 回 值： 无
+ * 修改日期       版本号     修改人	      修改内容
+ * -----------------------------------------------
+ * 2021/10/15	     V1.0	  韦东山	      创建
+ ***********************************************************************/
+void USART3_IRQHandler(void)
+{
+	extern ring_buffer *GetUART3RingBuffer(void);
+	
+	static ring_buffer *uart3_ringbuffer = NULL;
+    unsigned char c = 0;
+	
+	if (!uart3_ringbuffer)
+		uart3_ringbuffer = GetUART3RingBuffer();
+	
+    if((USART3->SR &(1<<5)) != 0)
+    {
+        c = USART3->DR;
+        ring_buffer_write(c, uart3_ringbuffer);
+    }
+    HAL_UART_IRQHandler(&huart3);
+}
+
+/**********************************************************************
+ * 函数名称： USART3_SendBytes
+ * 功能描述： 通过UART3发出多个数据
+ * 输入参数： buf-数据缓冲区
+ * 输入参数： len-数据长度
+ * 输出参数： 无
+ * 返 回 值： 0-成功
+ * 修改日期       版本号     修改人	      修改内容
+ * -----------------------------------------------
+ * 2021/10/15	     V1.0	  韦东山	      创建
+ ***********************************************************************/
+void USART3_SendBytes(char *buf, int len)
+{
+	int i;
+	for (i = 0; i < len; i++)
+	{
+		while ((USART3->SR & (1<<7)) == 0);
+		USART3->DR = buf[i];		
+	}
+}
+
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if(huart->Instance == USART1)
@@ -65,3 +125,4 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
         txcplt_flag = 1;
     }
 }
+

@@ -3,7 +3,7 @@
 
 #include "stm32f1xx_hal.h"
 
-#define BUFFER_SIZE 1024        /* 环形缓冲区的大小 */
+#define BUFFER_SIZE 128        /* 环形缓冲区的大小 */
 typedef struct
 {
     unsigned char buffer[BUFFER_SIZE];  /* 缓冲区空间 */

@@ -9,8 +9,8 @@ static PDisplayDevice g_ptDisplayDevices;
 
 /**********************************************************************
  * 函数名称： DisplayDeviceRegister
- * 功能描述： 注册一个输入设备
- * 输入参数： ptDisplayDevice-输入设备
+ * 功能描述： 注册一个显示设备
+ * 输入参数： ptDisplayDevice-显示设备
  * 输出参数： 无
  * 返 回 值： 无
  * 修改日期        版本号     修改人	      修改内容

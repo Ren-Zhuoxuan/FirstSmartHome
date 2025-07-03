@@ -202,6 +202,7 @@ void SysTick_Handler(void)
 /**
   * @brief This function handles USART3 global interrupt.
   */
+#if 0
 void USART3_IRQHandler(void)
 {
   /* USER CODE BEGIN USART3_IRQn 0 */
@@ -212,7 +213,7 @@ void USART3_IRQHandler(void)
 
   /* USER CODE END USART3_IRQn 1 */
 }
-
+#endif
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
